@@ -1,0 +1,41 @@
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    min-height: 300px;
+    background-color: aqua; /* Should be removed. Only for demonstration */
+  }
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+
+  }
+
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+  }
+
+  .align-item-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .heading{
+position: relative;
+padding-bottom: 20px;
+  }
+
+  .icon{
+    position:absolute;
+    top:-1px;
+    right:340px  
+
+  }
+  .icon{
+  cursor:pointer
+  }
