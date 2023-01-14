@@ -1,7 +1,10 @@
-import React from 'react'
-import Footer from '../../layout/Footer'
-import Header from '../../layout/Header'
-import Container from '../section/Container'
+import React from "react";
+
+import Footer from "../../layout/Footer";
+import Header from "../../layout/Header";
+import Container from "../section/Container";
+
+import "./HomePage.scss";
 
 export const HomePage = () => {
   return (
@@ -12,5 +15,5 @@ export const HomePage = () => {
       </div>
       <Footer />
     </>
-  )
-}
+  );
+};

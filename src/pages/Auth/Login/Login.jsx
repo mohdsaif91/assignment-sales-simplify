@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   checkIfAnyError,
@@ -7,143 +7,143 @@ import {
   uniqueId,
   userExists,
   validEmail,
-} from '../../../helper'
-import './Login.scss'
+} from "../../../helper";
+import "./Login.scss";
 
 export const Login = ({ from }) => {
   const [formData, setFormData] = React.useState({
-    email: '',
-    password: '',
-    uname: '',
-  })
+    email: "",
+    password: "",
+    uname: "",
+  });
   const [formDataError, setFormDataError] = React.useState({
-    email: '',
-    password: '',
-    uname: '',
-    error: '',
-  })
+    email: "",
+    password: "",
+    uname: "",
+    error: "",
+  });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value: inputValue } = e.target
+    const { name, value: inputValue } = e.target;
     switch (name) {
-      case 'email':
+      case "email":
         if (!inputValue || validEmail(inputValue)) {
           setFormDataError((formDataError) => ({
             ...formDataError,
-            email: 'Entered email address is wrong',
-          }))
+            email: "Entered email address is wrong",
+          }));
         } else {
           setFormDataError((formDataError) => ({
             ...formDataError,
-            email: '',
-          }))
+            email: "",
+          }));
         }
         if (inputValue.length <= 40) {
-          setFormData((formData) => ({ ...formData, email: inputValue }))
+          setFormData((formData) => ({ ...formData, email: inputValue }));
         }
 
-        break
-      case 'uname':
+        break;
+      case "uname":
         if (!inputValue) {
           setFormDataError((formDataError) => ({
             ...formDataError,
-            uname: 'Username is required',
-          }))
+            uname: "Username is required",
+          }));
         } else {
           setFormDataError((formDataError) => ({
             ...formDataError,
-            uname: '',
-          }))
+            uname: "",
+          }));
         }
         if (inputValue.length <= 40) {
-          setFormData((formData) => ({ ...formData, uname: inputValue }))
+          setFormData((formData) => ({ ...formData, uname: inputValue }));
         }
 
-        break
+        break;
 
-      case 'password':
+      case "password":
         if (minMaxLength(inputValue, 6)) {
           setFormDataError((formData) => ({
             ...formDataError,
-            password: 'Password must be between 6 to 15 characters',
-          }))
+            password: "Password must be between 6 to 15 characters",
+          }));
         } else {
           // setValue({ ...value, password: inputValue });
           setFormDataError((formData) => ({
             ...formDataError,
-            password: '',
-          }))
+            password: "",
+          }));
         }
         if (inputValue.length <= 15) {
-          setFormData((formData) => ({ ...formData, password: inputValue }))
+          setFormData((formData) => ({ ...formData, password: inputValue }));
         }
 
-        break
+        break;
 
       default:
-        break
+        break;
     }
-  }
+  };
 
   useEffect(() => {
     setFormData({
-      email: '',
-      password: '',
-      uname: '',
-    })
+      email: "",
+      password: "",
+      uname: "",
+    });
     setFormDataError({
-      email: '',
-      password: '',
-      uname: '',
-      error: '',
-    })
-  }, [from])
+      email: "",
+      password: "",
+      uname: "",
+      error: "",
+    });
+  }, [from]);
 
   const checkRequiredFiled = () => {
-    let valid = true
+    let valid = true;
 
-    if (formData.email.trim() === '') {
+    if (formData.email.trim() === "") {
       setFormDataError((formDataError) => ({
         ...formDataError,
-        email: 'Email is Required',
-      }))
-      valid = false
+        email: "Email is Required",
+      }));
+      valid = false;
     }
-    if (formData.password.trim() === '') {
+    if (formData.password.trim() === "") {
       setFormDataError((formDataError) => ({
         ...formDataError,
-        password: 'Password is Required',
-      }))
-      valid = false
+        password: "Password is Required",
+      }));
+      valid = false;
     }
 
-    if (from == 'Signup') {
-      if (formData.uname.trim() === '') {
+    if (from == "Signup") {
+      if (formData.uname.trim() === "") {
         setFormDataError((formDataError) => ({
           ...formDataError,
-          uname: 'Username is Required',
-        }))
-        valid = false
+          uname: "Username is Required",
+        }));
+        valid = false;
       }
     }
 
-    return valid
-  }
+    return valid;
+  };
 
   const handleSubmit = () => {
-    const isFormValid = checkRequiredFiled()
-    const { error, ...res } = formDataError
-    const isError = checkIfAnyError(res)
-    debugger
+    const isFormValid = checkRequiredFiled();
+    const { error, ...res } = formDataError;
+    const isError = checkIfAnyError(res);
+    debugger;
 
     if (isFormValid && isError) {
-      if (from == 'Signup') {
-        navigate('/Login')
+      if (from == "Signup") {
+        navigate("/Login");
 
         const getAllUsers =
-          JSON.parse(localStorage.getItem('registered-users')) || []
+          JSON.parse(localStorage.getItem("registered-users")) || [];
 
         if (getAllUsers.length > 0) {
           getAllUsers.push({
@@ -151,11 +151,11 @@ export const Login = ({ from }) => {
             password: formData.password,
             id: uniqueId(),
             username: formData.uname,
-          })
-          localStorage.setItem('registered-users', JSON.stringify(getAllUsers))
+          });
+          localStorage.setItem("registered-users", JSON.stringify(getAllUsers));
         } else {
           localStorage.setItem(
-            'registered-users',
+            "registered-users",
             JSON.stringify([
               {
                 email: formData.email,
@@ -163,34 +163,34 @@ export const Login = ({ from }) => {
                 id: uniqueId(),
                 username: formData.uname,
               },
-            ]),
-          )
+            ])
+          );
         }
       } else {
         const getAllUsers =
-          JSON.parse(localStorage.getItem('registered-users')) || []
+          JSON.parse(localStorage.getItem("registered-users")) || [];
 
         if (userExists(formData.email, getAllUsers)) {
-          navigate('/')
+          navigate("/");
           localStorage.setItem(
-            'user',
+            "user",
             JSON.stringify({
               email: formData.email,
               password: formData.password,
               id: uniqueId(),
               username: formData.uname,
-            }),
-          )
+            })
+          );
         } else {
-          debugger
+          debugger;
           setFormDataError((formDataError) => ({
             ...formDataError,
-            error: 'Check your credentials or User does not exist',
-          }))
+            error: "Check your credentials or User does not exist",
+          }));
         }
       }
     }
-  }
+  };
 
   const renderForm = (
     <div className="form">
@@ -208,7 +208,7 @@ export const Login = ({ from }) => {
         )}
       </div>
 
-      {from == 'Signup' && (
+      {from == "Signup" && (
         <div className="input-container">
           <label>Username </label>
           <input
@@ -237,29 +237,28 @@ export const Login = ({ from }) => {
           <div className="error">{formDataError.password}</div>
         )}
       </div>
-      <div className="button-container">
-        <button className="btn" onClick={handleSubmit}>
-          Sign {`${from == 'Signup' ? 'Up' : 'In'}`}
-        </button>
-      </div>
-
-      {from == 'Signup' ? (
-        <Link to="/Login">Login</Link>
-      ) : (
-        <Link to="/SignUp">Sign Up</Link>
-      )}
     </div>
-  )
+  );
 
   return (
     <div className="app">
       <div className="login-form">
-        {formDataError.error && (
-          <div className="error">{formDataError.error}</div>
-        )}
-        <div className="title">Sign {`${from == 'Signup' ? 'Up' : 'In'}`}</div>
+        <div className="title">Sign {`${from == "Signup" ? "Up" : "In"}`}</div>
         {renderForm}
+        {from == "Signup" ? (
+          <Link to="/Login">Login</Link>
+        ) : (
+          <Link to="/SignUp">Sign Up</Link>
+        )}
+        {formDataError.error && (
+          <div className="error text-center">{formDataError.error}</div>
+        )}
+        <div className="button-container">
+          <button className="btn" onClick={handleSubmit}>
+            Sign {`${from == "Signup" ? "Up" : "In"}`}
+          </button>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
