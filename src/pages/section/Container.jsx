@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 
 import { Content } from "./Content";
+import { addCard } from "../../Redux/Slice/card";
 
 import "./Container.scss";
-import { addCard } from "../../Redux/Slice/card";
 
 const Container = () => {
   const [data, setData] = useState(
@@ -14,7 +15,7 @@ const Container = () => {
   const dispatch = useDispatch();
 
   const handleAdd = (e, index, cardLength) => {
-    dispatch(addCard());
+    dispatch(addCard({ index: index, id: uuidv4() }));
   };
 
   return (

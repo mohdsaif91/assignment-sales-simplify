@@ -32,11 +32,18 @@ const card = createSlice({
   name: "cardSlice",
   reducers: {
     addCard: (state, action) => {
-      const wallDataCurrent = current(state);
-      console.log(action.payload);
+      let wallDataCurrent = current(state);
+      wallDataCurrent = Object.assign([], wallDataCurrent);
+      console.log(action.payload, " SLICE");
+      const { index, id } = action.payload;
+      const card_data = {
+        id,
+      };
       return {
         ...state,
-        wallData: wallDataCurrent.wallData.push(action.payload),
+        wallData: wallDataCurrent.wallData[index].cards_data.push({
+          ...card_data,
+        }),
       };
     },
   },
