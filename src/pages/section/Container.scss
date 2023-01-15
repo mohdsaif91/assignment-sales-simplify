@@ -1,8 +1,17 @@
+@import "../../variable.scss";
+
 .column {
   width: 100%;
   padding: 16px;
   min-height: 250px;
-  background-color: aqua; /* Should be removed. Only for demonstration */
+  border: 1px solid $card-border-color;
+  border-radius: 4px;
+}
+
+.cards-column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
 }
 .wall-row {
   display: grid;
@@ -12,6 +21,17 @@
 .add-icon {
   padding-top: 8px;
   margin-left: 8px;
+}
+
+.cards-row {
+  margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.cards-row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 @media screen and (max-width: 600px) {

@@ -1,36 +1,37 @@
 export const uniqueId = () => {
-  const dateString = Date.now().toString(36)
-  const randomness = Math.random().toString(36).substr(2)
+  const dateString = Date.now().toString(36);
+  const randomness = Math.random().toString(36).substr(2);
 
-  return dateString + randomness
-}
+  return dateString + randomness;
+};
 
 export function validEmail(text) {
   const regex = RegExp(
-    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-  )
-  return !regex.test(text)
+    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+  );
+  return !regex.test(text);
 }
 
 export function minMaxLength(text, minLength, maxLength) {
-  let result = !text || text.length < minLength
+  let result = !text || text.length < minLength;
 
   if (maxLength) {
-    result = text.length > maxLength || result
+    result = text.length > maxLength || result;
   }
 
-  return result
+  return result;
 }
 
 export const checkIfAnyError = (formDataError) => {
-  let result
+  let result;
   return (result = !Object.values(formDataError).some(
-    (item) => item.length > 0,
-  ))
-}
+    (item) => item.length > 0
+  ));
+};
 
 export function userExists(username, allusers) {
   return allusers.some(function (el) {
-    return el.email === username
-  })
+    console.log(el.email === username, " Checking the ");
+    return el;
+  });
 }

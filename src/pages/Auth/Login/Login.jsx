@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import {
@@ -8,6 +9,8 @@ import {
   userExists,
   validEmail,
 } from "../../../helper";
+import { loginUser } from "../../../Redux/Slice/user";
+
 import "./Login.scss";
 
 export const Login = ({ from }) => {
@@ -23,6 +26,7 @@ export const Login = ({ from }) => {
     error: "",
   });
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -136,12 +140,9 @@ export const Login = ({ from }) => {
     const isFormValid = checkRequiredFiled();
     const { error, ...res } = formDataError;
     const isError = checkIfAnyError(res);
-    debugger;
-
     if (isFormValid && isError) {
       if (from == "Signup") {
         navigate("/Login");
-
         const getAllUsers =
           JSON.parse(localStorage.getItem("registered-users")) || [];
 
@@ -169,20 +170,26 @@ export const Login = ({ from }) => {
       } else {
         const getAllUsers =
           JSON.parse(localStorage.getItem("registered-users")) || [];
-
-        if (userExists(formData.email, getAllUsers)) {
+        const hj = [];
+        const userFound = getAllUsers.find(
+          (f) => f.email === formData.email && f.password === formData.password
+        );
+        console.log(userFound, " Found User");
+        if (userFound) {
+          console.log("found user");
           navigate("/");
-          localStorage.setItem(
+          dispatch(
+            loginUser({
+              ...userFound,
+            })
+          );
+          sessionStorage.setItem(
             "user",
             JSON.stringify({
-              email: formData.email,
-              password: formData.password,
-              id: uniqueId(),
-              username: formData.uname,
+              ...userFound,
             })
           );
         } else {
-          debugger;
           setFormDataError((formDataError) => ({
             ...formDataError,
             error: "Check your credentials or User does not exist",

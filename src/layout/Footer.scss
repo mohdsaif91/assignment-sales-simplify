@@ -1,20 +1,14 @@
-$color-white: white;
-
+@import "../variable";
 
 .footer {
-    background-color:$color-white;
-    padding: 10px;
-    text-align: center;
+  background-color: $card-font-color;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
 
-    position: absolute;
-
-    width: 100%;
-    bottom: 0;
-    left: 0;
-  }
-
-  .align-item-center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.align-item-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

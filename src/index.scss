@@ -63,3 +63,17 @@ input[type="submit"]:hover {
 .mt-4 {
   margin-top: 32px;
 }
+.btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.notAccess {
+  cursor: none !important;
+  opacity: 0.5;
+}
