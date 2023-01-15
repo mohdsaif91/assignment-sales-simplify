@@ -5,7 +5,7 @@ import { FaCopyright } from 'react-icons/fa'
 const Footer = () => {
   return (
     <div className="footer">
-      <p className="align-item-center">
+      <p className="footer-center">
         <FaCopyright />
         {new Date().getFullYear()} Powered by Retrospective Wall
       </p>

@@ -58,6 +58,14 @@
   align-items: center;
 }
 
-.container-title {
-  // margin: 0 !important;
-}
+@media screen and (max-width: 600px) {
+  .container-title {
+   font-size: 22px;
+  }
+  .align-item-center{
+    justify-content: space-between;
+  }
+ 
+ }
+
+

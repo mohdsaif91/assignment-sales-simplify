@@ -7,8 +7,16 @@
   width: 100%;
 }
 
-.align-item-center {
+.footer-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+@media screen and (max-width: 600px) {
+
+  .align-item-center{
+    justify-content: center;
+  }
+ 
+ }

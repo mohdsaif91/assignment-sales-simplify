@@ -1,7 +1,7 @@
-import React from "react";
-import { CiCirclePlus } from "react-icons/ci";
+import React from 'react'
+import { CiCirclePlus } from 'react-icons/ci'
 
-import Cards from "../../component/card/Cards";
+import Cards from '../../component/card/Cards'
 
 export const Content = ({
   id,
@@ -26,7 +26,12 @@ export const Content = ({
           {cards_data.length != 0 ? (
             cards_data.map((item, index) => (
               <div className="cards-column">
-                <Cards cardData={item} cardIndex={index} cardFamily={id} />
+                <Cards
+                  cardData={item}
+                  key={index + 'fdfgjkfj'}
+                  cardIndex={index}
+                  cardFamily={id}
+                />
               </div>
             ))
           ) : (
@@ -35,5 +40,5 @@ export const Content = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
